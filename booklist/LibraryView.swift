@@ -6,6 +6,11 @@ struct LibraryView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
+                if favoriteBooks.isEmpty{
+                    Text("登録された本がありません")
+                        .foregroundColor(.gray)
+                        .padding()
+                }
                 LazyVGrid(columns: columns, spacing: 0){
                     ForEach(favoriteBooks, id: \.id){ book in
                         AsyncImage(url: URL(string: book.thumbnail ?? "")){ image in
